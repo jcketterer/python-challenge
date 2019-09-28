@@ -21,27 +21,29 @@ greatestIncreaseTotal = 0
 lineBreak = "-"*30
 
 
-with open(budget_data_csv, newline='') as csvfile: 
-    reader = csv.DictReader(csvfile)
-    
-    for row in reader:
+with open('budget_data.csv') as data:
+    data_reader = csv.reader(data)
+    next(data_reader, None)
 
-        date.append(row['Date'])
-        profLoss.append(int(row['Profit/Losses']))
 
-        value = int(row['Profit/Losses'])
+    for row in data_reader:
+
+        date.append(row[0])
+        profLoss.append(int(row[1]))
+
+        value = int(row[1])
 
         if greatestIncreaseTotal < value:
             greatestIncreaseTotal = value
-            greatestIncreaseDate = row['Date']
+            greatestIncreaseDate = row[0]
 
         if greatestDecreaseTotal > value: 
             greatestDecreaseTotal = value 
-            greatestDecreaseData = row['Date']
+            greatestDecreaseData = row[0]
 
 
         months = months + 1
-        netTotal = netTotal + int(row['Profit/Losses'])
+        netTotal = netTotal + int(row[1])
         avgChange = mean(profLoss) 
 
     #formatting to two decimal places

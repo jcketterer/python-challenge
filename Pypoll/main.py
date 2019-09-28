@@ -10,8 +10,7 @@ line_break = "-"*30
 
 #Setting path for CSV file 
 path = os.path.join("election_data.csv")
-
-with open (path,newline="") as data:
+with open(path,newline="") as data:
     data_reader = csv.reader(data,delimiter=',')
     data_header = next(data_reader)
 
